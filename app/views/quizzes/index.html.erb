@@ -1,0 +1,41 @@
+<div class="col-lg-3">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2>Quizzes <span class="badge"><%= @quizzes.count %></span></h2>
+    </div>
+  </div>
+
+  <div class="list-group">
+    <%= link_to 'Dashboard', dashboard_path, class: 'list-group-item list-group-item-info' %>
+  </div>
+</div>
+
+<div class="col-lg-9">
+  <% if @quizzes.present? %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h2>Manage your quizzes</h2>
+        </div>
+
+        <div class="panel-body">
+
+          <%= link_to new_quiz_path, class: 'btn btn-success' do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              New quiz
+          <% end %>
+
+          <hr>
+
+          <% @quizzes.each do |quiz| %>
+              <%= link_to quiz.title, quiz, class: 'list-group-item' %>
+          <% end %>
+
+        </div>
+      </div>
+  <% else %>
+      <div class="jumbotron text-center">
+        <h2>You don't have any quizzes yet.</h2>
+        <h4>Create a <%= link_to 'new quiz', new_quiz_path %> now.</h4>
+      </div>
+  <% end %>
+</div>

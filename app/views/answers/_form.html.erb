@@ -1,0 +1,47 @@
+<div class="col-lg-8">
+  <%= form_for([answer.question.quiz, answer.question, answer]) do |f| %>
+      <% if answer.errors.any? %>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h2><%= pluralize(answer.errors.count, 'error') %> prohibited this answer from being saved:</h2>
+            </div>
+
+            <ul>
+              <% answer.errors.full_messages.each do |message| %>
+                  <li class="text-danger"><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <%= f.label :text %>
+                <%= f.text_field :text, class: 'form-control' %>
+                <div class="help-block">Answer</div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <%= f.label :correct %>
+                <%= f.check_box :correct, class: 'form-control' %>
+                <div class="help-block">Mark this answer as a correct one</div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <%= f.submit nil, class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', quiz_question_answers_path(@answer.question.quiz, @answer.question),
+                      class: 'btn btn-default pull-right' %>
+
+        </div>
+      </div>
+
+  <% end %>
+</div>

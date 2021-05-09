@@ -1,0 +1,14 @@
+<div class="col-lg-3">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2>New Answer</h2>
+    </div>
+  </div>
+
+  <div class="list-group">
+    <%= link_to 'Answers', quiz_question_answers_path(@answer.question.quiz, @answer.question),
+                class: 'list-group-item list-group-item-info' %>
+  </div>
+</div>
+
+<%= render 'form', answer: @answer %>

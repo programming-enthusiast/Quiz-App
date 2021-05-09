@@ -1,0 +1,23 @@
+<div class="col-lg-3">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2>Showing Category</h2>
+    </div>
+  </div>
+
+  <div class="list-group">
+    <%= link_to 'Categories', categories_path, class: 'list-group-item list-group-item-info' %>
+  </div>
+</div>
+
+<div class="col-lg-9">
+  <div class="panel panel-info">
+    <div class="panel-heading"><h2><%= @category.name %></h2></div>
+
+    <div class="panel-body">
+      <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-primary' %>
+      <%= link_to 'Destroy', @category, method: :delete, data: {confirm: 'Are you sure?'},
+                  class: 'btn btn-danger pull-right' %>
+    </div>
+  </div>
+</div>

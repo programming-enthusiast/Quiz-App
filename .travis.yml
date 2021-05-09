@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+  - 2.6.4
+env:
+  matrix:
+    - RAILS_ENV=test
+  global:
+    secure: DkBmI1oIr67ogC/k9ZtbJBHpuxavdBeGSea4DqxE+BschL18JiHsCBqLIZ8u+emmcp/uoqPx/LD8kEY2FiR2JcqTRgwfE9cQCJwiDSNsiBKMcv9evo1+s4dNcEEyMUSfUw5s8LXqSXHlBUJ9xry6+r7xZN8FE4F7CtbgOCMtRPufgnbnTt1vJHY8+d7zgeiG822y+j6y8+f04Z4/FU4SWWI5f87JuBMKsGyaCaKqEMwGZaBT3zVMehzoR4wdDIRmF1xvjOK7brCy2uYWNDAW2hrmrnp4UoACWi11GVoYgAuOS9KhjBWmBOjOafEZHSIXHuteVIHkxEgwmYAd7rtztmF44gtb6WylAD8IArPMyMeWJ3294SVKl9QRSh86tUNEHleiJnibNBm2i8dU2DlaGyZMu8xb98czud4ss05uHi8mcjSEjBzQ0njB6PyKi+OmpA+uiMtqgATDJJpxP3uhzoE68Q5qXZtBrpESAX4PLknuRobxAzrvpOqVYSLo9s1J+IQMkyEzmWA0Nw0s1JYn2W1FE2wHaLIG7VpDbRct8KB4WSIFViwgSTbuSZRY3guuUJW1YwlELTsqTzQfjZDXo+q15I9lbl++sImNN20I/j3kQSTAL3RUM5QRRr51tD7VvMXuyel+7BWXWud9hklN8PtSxrnYxABdg/pzJ+y8NvA=
+before_script:
+  - npm install -g bower
+  - bower install
+  - bundle exec rake db:setup
+  - bundle exec rails runner "Webdrivers::Chromedriver.update"
+script:
+  - bundle exec rake
+services:
+  - postgresql
+addons:
+  chrome: stable

@@ -1,0 +1,37 @@
+<div class="col-lg-9">
+  <%= form_for(category) do |f| %>
+      <% if category.errors.any? %>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h2><%= pluralize(category.errors.count, 'error') %> prohibited this category from being saved:</h2>
+            </div>
+
+            <ul>
+              <% category.errors.full_messages.each do |message| %>
+                  <li class="text-danger"><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: 'form-control' %>
+                <div class="help-block">Category name</div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <%= f.submit nil, class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', categories_path, class: 'btn btn-default pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</div>

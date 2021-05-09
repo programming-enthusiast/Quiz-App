@@ -1,0 +1,37 @@
+<div class="col-lg-3">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2>Categories <span class="badge"><%= @categories.count %></span></h2>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-9">
+  <% if @categories.present? %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h2>Manage your categories</h2>
+        </div>
+
+        <div class="panel-body">
+
+          <%= link_to new_category_path, class: 'btn btn-success' do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              New category
+          <% end %>
+
+          <hr>
+
+          <% @categories.each do |category| %>
+              <%= link_to category.name, category, class: 'list-group-item' %>
+          <% end %>
+
+        </div>
+      </div>
+  <% else %>
+      <div class="jumbotron text-center">
+        <h2>You don't have any categories yet.</h2>
+        <h4>Create a <%= link_to 'new category', new_category_path %> now.</h4>
+      </div>
+  <% end %>
+</div>

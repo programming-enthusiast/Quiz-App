@@ -1,0 +1,43 @@
+<div class="col-lg-3">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2>Questions <span class="badge"><%= @questions.count %></span></h2>
+    </div>
+  </div>
+
+  <div class="list-group">
+    <%= link_to 'Quiz', quiz_path(@quiz), class: 'list-group-item list-group-item-info' %>
+  </div>
+</div>
+
+<div class="col-lg-9">
+  <% if @questions.present? %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h2>Questions for <%= @quiz.title %></h2>
+        </div>
+
+        <div class="panel-body">
+
+          <%= link_to new_quiz_question_path(@quiz), class: 'btn btn-success' do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              New question
+          <% end %>
+
+          <hr>
+
+          <div class="list-group">
+            <% @questions.each do |question| %>
+                <%= link_to question.text, polymorphic_path([question.quiz, question]), class: 'list-group-item' %>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+  <% else %>
+      <div class="jumbotron text-center">
+        <h2>You don't have any questions yet.</h2>
+        <h4>Create a <%= link_to 'new question', new_quiz_question_path(@quiz) %> now.</h4>
+      </div>
+  <% end %>
+</div>
