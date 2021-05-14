@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2021_05_08_233325) do
     t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score"
+    t.integer "#<ActiveRecord::ConnectionAdapters::PostgreSQL::TableDefinition"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_05_08_233325) do
     t.integer "score", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id", "user_id"], name: "index_scores_on_quiz_id_and_user_id", unique: true
     t.index ["quiz_id"], name: "index_scores_on_quiz_id"
     t.index ["user_id"], name: "index_scores_on_user_id"
   end
